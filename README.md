@@ -13,3 +13,4 @@
 - [Top 50 Dynamic Programming Practice Problems](https://blog.usejournal.com/top-50-dynamic-programming-practice-problems-4208fed71aa3)
 - [剑指offer-数组中的逆序对题解](https://zhuanlan.zhihu.com/p/39811184)
 - [剑指Offer-剪绳子](https://blog.csdn.net/Koala_Tree/article/details/78932316)
+- [leetcode-Understanding function to generate parentheses](https://stackoverflow.com/questions/23413881/understanding-function-to-generate-parentheses)
