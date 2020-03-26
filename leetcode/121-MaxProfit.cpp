@@ -1,4 +1,4 @@
-//贪心算法
+//贪心算法,迭代过程中同时维护利润最大值profit和买入最小值min_stock
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
