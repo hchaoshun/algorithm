@@ -1,3 +1,5 @@
+//dp[i][j]表示0,0到i,j的最短路径和
+//dp[i][j] = min(dp[i-1]j], dp[i][j-1]) + grid[i][j]
 class Solution {
 public:
     int minPathSum(vector<vector<int>>& grid) {
