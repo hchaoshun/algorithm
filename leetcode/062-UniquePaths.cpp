@@ -1,4 +1,4 @@
-//dp
+//dp, dp[i][j] = dp[i-1][j] + dp[i][j-1]
 class Solution {
 public:
     int uniquePaths(int m, int n) {
