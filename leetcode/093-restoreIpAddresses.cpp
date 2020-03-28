@@ -16,6 +16,7 @@ public:
             return;
         }
         //开始时s的长度最长为12，每加一个段，长队最多减少3
+        //比如最开始长度上界为12，走第一步上界为9，第二步上界为6
         if (s.size() - index > (4 - path.size()) * 3)
             return;
         //开始时s的长度最短为4，每加一个段，长队最少减少1
@@ -25,8 +26,8 @@ public:
         int num = 0;
         for (size_t i = index; i < index + 3; i++) {
             num = num * 10 + (s[i] - '0');
-            if (num < 0 || num > 255) continue;
-            path.push_back(s.substr(index, i - index + 1));
+            if (num < 0 || num > 255) break;
+            path.push_back(to_string(num));
             dfs(s, result, path, i + 1);
             path.pop_back();
             //ip每一个段不允许前缀为0，但允许单个0
