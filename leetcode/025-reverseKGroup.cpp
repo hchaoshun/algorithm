@@ -7,40 +7,40 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+
+//1. 链表分区为已翻转部分+待翻转部分+未翻转部分
+//2. 需记录翻转链表前驱pred和后继succ，方便翻转完成后把已翻转部分和未翻转部分连接起来
+//3. start 和end为起始翻转链表,最后长度不足k时退出
 class Solution {
 public:
     ListNode* reverseKGroup(ListNode* head, int k) {
         ListNode dummy(-1);
         dummy.next = head;
-        ListNode *pred = &dummy, *end = &dummy;
-        ListNode *start = nullptr;
-        ListNode *next = nullptr;
-        while (pred->next != nullptr) {
-            for (int i = 0; i < k && end != nullptr; i++) {
+        ListNode *prev = &dummy, *succ = &dummy;
+        ListNode *start = nullptr, *end = nullptr;
+        while (prev->next != nullptr) {
+            end = prev;
+            for (int i = 0; i < k && end != nullptr; i++)
                 end = end->next;
-            }
             if (end == nullptr) break;
-            start = pred->next;
-            next = end->next;
+            start = prev->next;
+            succ = end->next;
             end->next = nullptr;
             end = reverseList(start);
-            pred->next = end;
-            start->next = next;
-            pred = start;
-            end = pred;
+            prev->next = end;
+            start->next = succ;
+            prev = start;
+            succ = prev; 
         }
         return dummy.next;
     }
 
-    ListNode *reverseList(ListNode *root) {
-        ListNode *p1 = nullptr;
-        ListNode *p2 = root;
-        while (p2 != nullptr) {
-            ListNode *p3 = p2->next;
-            p2->next = p1;
-            p1 = p2;
-            p2 = p3;
-        }
-        return p1;
+    ListNode *reverseList(ListNode *head) {
+        if (head == nullptr || head->next == nullptr)
+            return head;
+        ListNode *new_head = reverseList(head->next);
+        head->next->next = head;
+        head->next = nullptr;
+        return new_head;
     }
 };
