@@ -43,3 +43,30 @@ private:
         return new_node;
     }
 };
+
+//bfs 用一个队列存储old节点
+class Solution {
+public:
+    Node* cloneGraph(Node* node) {
+        if (node == nullptr) return nullptr;
+        unordered_map<Node*, Node*> record;
+        Node* new_node = new Node(node->val);
+        record[node] = new_node;
+        queue<Node*> q;
+        q.push(node);
+
+        while (!q.empty()) {
+            Node *top_node = q.front();
+            q.pop();
+            //将old节点的neighbors拷贝到new节点的neighbors
+            for (auto n : top_node->neighbors) {
+                if (record.find(n) == record.end()) {
+                    record[n] = new Node(n->val);
+                    q.push(n);
+                }
+                record[top_node]->neighbors.push_back(record[n]);
+            }
+        }
+        return record[node];
+    }
+};
