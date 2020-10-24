@@ -6,3 +6,4 @@ website: https://www.geeksforgeeks.org/top-20-dynamic-programming-interview-ques
 
 1. [Longest Common Subsequence](https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/)
 2. [Longest Increasing Subsequence](https://www.geeksforgeeks.org/longest-increasing-subsequence-dp-3/)
+3. [Edit Distance](https://www.geeksforgeeks.org/edit-distance-dp-5/)
