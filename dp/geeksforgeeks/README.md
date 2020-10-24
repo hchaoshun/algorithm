@@ -5,3 +5,4 @@ Dynamic Programming is an algorithmic paradigm that solves a given complex probl
 website: https://www.geeksforgeeks.org/top-20-dynamic-programming-interview-questions/
 
 1. [Longest Common Subsequence](https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/)
+2. [Longest Increasing Subsequence](https://www.geeksforgeeks.org/longest-increasing-subsequence-dp-3/)
