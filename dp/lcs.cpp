@@ -32,6 +32,7 @@ public:
 };
 
 //lcs连续公共子序列
+//dp数组只记录连续子序列的最大长度
 class Solution {
 public:
     int lcs(const string &s1, const string &s2) {
