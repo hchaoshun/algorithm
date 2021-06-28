@@ -1,4 +1,5 @@
 //dp问题.max_num = max(f(i) * f(n - i)) 0 < i <  n
+//此题不需要关心切多少刀
 class Solution {
 public:
     int cutRope(int number) {
