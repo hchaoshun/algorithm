@@ -46,3 +46,38 @@ protected:
     vector<int> min_n; //后n/2部分小顶堆
 
 };
+
+class Solution {
+public:
+    void Insert(int num) {
+        if ((q1.size() + q2.size()) & 1 == 1) {
+            if (num < q2.top()) {
+                q1.push(num);
+            } else {
+                q1.push(q2.top());
+                q2.pop();
+                q2.push(num);
+            }
+        } else {
+            if (q1.empty() || num > q1.top()) {
+                q2.push(num);
+            } else {
+                q2.push(q1.top());
+                q1.pop();
+                q1.push(num);
+            }
+        }
+    }
+
+    double GetMedian() {
+        if ((q1.size() + q2.size()) & 1 == 1) {
+            return q2.top();
+        } else {
+            return (q1.top() + q2.top()) * 1.0 / 2;
+        }
+    }
+
+private:
+    priority_queue<int> q1;
+    priority_queue<int, vector<int>, greater<int>> q2;
+};
