@@ -68,3 +68,43 @@ public:
         return count;
     }
 };
+
+class Solution {
+public:
+    int InversePairs(vector<int> data) {
+        return MergeSort(data, 0, data.size()) % 1000000007;
+    }
+
+private:
+    long long MergeSort(vector<int> &data, int lo, int hi) {
+        long long count = 0;
+        if (hi - lo < 2) return count;
+        int mid = (lo + hi) >> 1;
+        count += MergeSort(data, lo, mid);
+        count += MergeSort(data, mid, hi);
+        count += Merge(data, lo, mid, hi);
+        return count;
+    }
+
+    long long Merge(vector<int> &data, int lo, int mid, int hi) {
+        //需要统计完才能排序
+        vector<int> tmp(hi - lo, 0);
+        int i = mid - 1, j = hi - 1;
+        int k = 0;
+        long long count = 0;
+        while (i >= lo && j >= mid) {
+            if (data[i] > data[j]) {
+                count += j - mid + 1;
+                tmp[k++] = data[i--];
+            } else {
+                tmp[k++] = data[j--];
+            }
+        }
+        while (i >= lo) tmp[k++] = data[i--];
+        while (j >= mid) tmp[k++] = data[j--];
+        for (int i = 0; i < k; ++i) {
+            data[i+lo] = tmp[k-i-1];
+        }
+        return count;
+    }
+};
