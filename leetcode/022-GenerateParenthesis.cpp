@@ -70,3 +70,46 @@ private:
         return s.empty();
     }
 };
+
+//在上一步的基础上优化，回溯
+class Solution {
+public:
+    vector<string> generateParenthesis(int n) {
+        vector<string> result;
+        string path;
+        generate(result, path, 0, 0, n);
+        return result;
+    }
+
+private:
+    void generate(vector<string> &result, string &path, int left, int right, int n) {
+        if (path.size() == 2 * n) {
+            if (validate(path)) {
+                result.push_back(path);
+            }
+            return;
+        }
+        if (left < n) {
+            path.push_back('(');
+            generate(result, path, left + 1, right, n);
+            path.pop_back();
+        }
+        if (right < n) {
+            path.push_back(')');
+            generate(result, path, left, right + 1, n);
+            path.pop_back();
+        }
+    }
+
+    bool validate(const string& path) {
+        stack<char> s;
+        for (auto c : path) {
+            if (c == '(') s.push(c);
+            else {
+                if (s.empty()) return false;
+                else s.pop();
+            }
+        }
+        return s.empty();
+    }
+};
