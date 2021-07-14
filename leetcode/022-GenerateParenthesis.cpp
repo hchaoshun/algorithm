@@ -31,3 +31,42 @@ private:
         }
     }
 };
+
+//递归生成所有可能的情况，然后逐一判断
+class Solution {
+public:
+    vector<string> generateParenthesis(int n) {
+        vector<string> result;
+        string path;
+        generate(result, path, 0, n * 2);
+        return result;
+    }
+
+private:
+    void generate(vector<string> &result, string &path, int current_num, int n) {
+        if (path.size() == n) {
+            if (validate(path)) {
+                result.push_back(path);
+            }
+            return;
+        }
+        path.push_back('(');
+        generate(result, path, current_num + 1, n);
+        path.pop_back();
+        path.push_back(')');
+        generate(result, path, current_num + 1, n);
+        path.pop_back();
+    }
+
+    bool validate(const string& path) {
+        stack<char> s;
+        for (auto c : path) {
+            if (c == '(') s.push(c);
+            else {
+                if (s.empty()) return false;
+                else s.pop();
+            }
+        }
+        return s.empty();
+    }
+};
