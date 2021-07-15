@@ -2,6 +2,8 @@
 //bool dp[i][j] 记录i到j的字串是否是回文,
 //dp[i][j] = (s[i] == s[j] && (dp[i+1][j-1] || j - 1 == 1))
 
+
+//todo 从大到小查找会更快
 class Solution {
 public:
     string longestPalindrome(string s) {
