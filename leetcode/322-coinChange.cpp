@@ -1,4 +1,5 @@
 //dfs,会超时
+//计算所有可能的情况，然后取最小值
 class Solution {
 public:
     int coinChange(vector<int>& coins, int amount) {
