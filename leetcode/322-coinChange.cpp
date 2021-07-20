@@ -27,7 +27,7 @@ public:
 };
 
 //dp存储金额为i时的最少硬币个数
-//dp[i] = min(dp[i-cj]) + 1
+//dp[i] = min(dp[i-cj] + 1)
 class Solution {
 public:
     int coinChange(vector<int>& coins, int amount) {
@@ -41,5 +41,33 @@ public:
             }
         }
         return dp[amount] == max_amount ? -1 : dp[amount];
+    }
+};
+
+
+//首先令所有初始值为-1
+//寻找dp最小值：dp[i] = min(dp[i], dp[i - coins[j]] + 1)
+//注意1: i - coins[j]没有在dp中赋值过（-1）表示此种情况不存在
+//注意2: 第一次初始化不需要比最小值（因为此时默认值是-1），所以需要is_first参数
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        if (amount <= 0) return 0;
+        vector<int> dp(amount + 1, -1);
+        dp[0] = 0;
+        for (int i = 1; i <= amount; ++i) {
+            bool is_first = true;
+            for (int j = 0; j < coins.size(); ++j) {
+                if (i - coins[j] >= 0 && dp[i - coins[j]] != -1) {
+                    if (is_first) {
+                        dp[i] = dp[i - coins[j]] + 1;
+                        is_first = false;
+                    } else {
+                        dp[i] = min(dp[i], dp[i - coins[j]] + 1);
+                    }
+                }
+            }
+        }
+        return dp[amount];
     }
 };
